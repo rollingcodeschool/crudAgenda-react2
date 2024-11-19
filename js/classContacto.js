@@ -20,3 +20,4 @@ export default class Contacto{
 
     //agregar los get y set
 }
+
