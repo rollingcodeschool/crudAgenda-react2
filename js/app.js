@@ -13,7 +13,8 @@ const apodo = document.querySelector('#apodo')
 const telefono = document.querySelector('#telefono')
 const direccion = document.querySelector('#direccion')
 const imagen = document.querySelector('#urlImagen')
-const listaContactos =[]
+const listaContactos = JSON.parse(localStorage.getItem('agendaKey')) || []
+console.log(listaContactos);
 
 //funciones
 function abrirModalContacto(){
