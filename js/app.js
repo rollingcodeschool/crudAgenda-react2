@@ -43,6 +43,39 @@ function guardarEnLocalStorage(){
     localStorage.setItem('agendaKey', JSON.stringify(listaContactos))
 }
 
+function cargarDatosTabla(){
+    //preguntar si el array tiene informacion
+    if(listaContactos.length !== 0){
+        //dibujar una fila por cada elemento del array
+        listaContactos.map((contacto, indice)=> dibujarFila(contacto, indice + 1) )
+    }
+}
+
+function dibujarFila (contacto, fila){
+    console.log(contacto)
+    //traigo la tabla
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML += `
+    <tr>
+              <th scope="row">${fila}</th>
+              <td>${contacto.nombre}</td>
+              <td>${contacto.apellido}</td>
+              <td>${contacto.email}</td>
+              <td>${contacto.telefono}</td>
+              <td>
+                <button class="btn btn-warning">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-danger">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+                <button class="btn btn-info"><i class="bi bi-eye"></i></button>
+              </td>
+            </tr>
+    `
+}
+
 //el resto de la logica del proyecto
 btnAgregar.addEventListener('click', abrirModalContacto);
 formulario.addEventListener('submit', crearContacto)
+cargarDatosTabla();
