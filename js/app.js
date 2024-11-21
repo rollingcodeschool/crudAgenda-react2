@@ -28,6 +28,18 @@ function crearContacto(e){
     //guardar el contacto nuevo en la lista de contactos
     listaContactos.push(nuevoContacto)
     console.log(listaContactos)
+    //guardar en localstorage
+    guardarEnLocalStorage();
+    //limpiar el formulario
+    limpiarFormulario();
+}
+
+function limpiarFormulario(){
+    formulario.reset();
+}
+
+function guardarEnLocalStorage(){
+    localStorage.setItem('agendaKey', JSON.stringify(listaContactos))
 }
 
 //el resto de la logica del proyecto
