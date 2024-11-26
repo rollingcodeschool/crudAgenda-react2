@@ -65,6 +65,9 @@ function cargarDatosTabla(){
 window.borrarContacto = (id)=> {
   console.log('desde la funcion borrar contacto')
   console.log(id)
+  //en que posicion del array esta el contacto que quiero eliminar
+  const posicionContacto = listaContactos.findIndex((contacto)=> contacto.id === id  )
+  console.log(posicionContacto)
   //splice borra del medio del array
 }
 
