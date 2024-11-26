@@ -1,5 +1,5 @@
 import Contacto from "./classContacto.js"
-// import Swal from 'sweetalert2.js'
+// import Swal from 'sweetalert2'
 
 //declaro variables globales
 
@@ -68,7 +68,14 @@ window.borrarContacto = (id)=> {
   //en que posicion del array esta el contacto que quiero eliminar
   const posicionContacto = listaContactos.findIndex((contacto)=> contacto.id === id  )
   console.log(posicionContacto)
-  //splice borra del medio del array
+  //splice borra el contacto buscado del array
+  listaContactos.splice(posicionContacto,1)
+  //actualizar el localstorage
+  guardarEnLocalStorage()
+  //borrar la fila de la tabla
+  const tbody = document.querySelector('tbody');
+  tbody.removeChild(tbody.children[posicionContacto])
+  // actualizar las filas de la tabla
 }
 
 function dibujarFila (contacto, fila){
@@ -93,6 +100,14 @@ function dibujarFila (contacto, fila){
               </td>
             </tr>
     `
+}
+
+function editarContacto(){
+  //abrir el modal cuando hago click en el boton editar
+  //cargar los datos del contacto dentro del modal
+  //buscar dentro del array el contacto a modificar, le cambio los valores
+  //actualizar el localstorage
+  //volver a dibujar la fila del contacto editado
 }
 
 //el resto de la logica del proyecto
