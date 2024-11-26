@@ -1,4 +1,5 @@
 import Contacto from "./classContacto.js"
+// import Swal from 'sweetalert2.js'
 
 //declaro variables globales
 
@@ -33,7 +34,17 @@ function crearContacto(e){
     guardarEnLocalStorage();
     //limpiar el formulario
     limpiarFormulario();
+    //dibuje una fila
+    dibujarFila(nuevoContacto, listaContactos.length)
+    //mostrar un cartel intuitivo para el usuario
+    // Swal.fire({
+    //   title: "Good job!",
+    //   text: "You clicked the button!",
+    //   icon: "success"
+    // });
 }
+
+
 
 function limpiarFormulario(){
     formulario.reset();
@@ -51,6 +62,12 @@ function cargarDatosTabla(){
     }
 }
 
+window.borrarContacto = (id)=> {
+  console.log('desde la funcion borrar contacto')
+  console.log(id)
+  //splice borra del medio del array
+}
+
 function dibujarFila (contacto, fila){
     console.log(contacto)
     //traigo la tabla
@@ -66,7 +83,7 @@ function dibujarFila (contacto, fila){
                 <button class="btn btn-warning">
                   <i class="bi bi-pencil"></i>
                 </button>
-                <button class="btn btn-danger">
+                <button class="btn btn-danger" onclick="borrarContacto('${contacto.id}')">
                   <i class="bi bi-x-lg"></i>
                 </button>
                 <button class="btn btn-info"><i class="bi bi-eye"></i></button>
