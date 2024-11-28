@@ -1,4 +1,5 @@
 import Contacto from "./classContacto.js"
+import { validarCaracteres } from "./validaciones.js";
 // import Swal from 'sweetalert2'
 
 //declaro variables globales
@@ -25,6 +26,7 @@ function abrirModalContacto(){
 function crearContacto(e){
     e.preventDefault();
     //validar los datos del formulario
+  if(validarCaracteres(nombre,2,50)){
     //crear el objeto
     const nuevoContacto = new Contacto(nombre.value,apellido.value, email.value, telefono.value, apodo.value, direccion.value, imagen.value)
     //guardar el contacto nuevo en la lista de contactos
@@ -42,6 +44,11 @@ function crearContacto(e){
     //   text: "You clicked the button!",
     //   icon: "success"
     // });
+  }else{
+    console.log('mostrar mensaje de error')
+  }
+
+
 }
 
 
