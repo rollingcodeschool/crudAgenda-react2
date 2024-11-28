@@ -96,7 +96,7 @@ function dibujarFila (contacto, fila){
                 <button class="btn btn-danger" onclick="borrarContacto('${contacto.id}')">
                   <i class="bi bi-x-lg"></i>
                 </button>
-                <button class="btn btn-info"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-info" onclick="verDetalle('${contacto.id}')"><i class="bi bi-eye"></i></button>
               </td>
             </tr>
     `
@@ -109,6 +109,13 @@ function editarContacto(){
   //actualizar el localstorage
   //volver a dibujar la fila del contacto editado
 }
+
+window.verDetalle = (id)=>{
+  //BOM
+  // console.log(window.location)
+  window.location.href = `${window.location.origin}/pages/detalleContacto.html?id=${id}`
+}
+
 
 //el resto de la logica del proyecto
 btnAgregar.addEventListener('click', abrirModalContacto);
