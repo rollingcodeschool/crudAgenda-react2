@@ -1,5 +1,5 @@
 import Contacto from "./classContacto.js"
-import { validarCaracteres } from "./validaciones.js";
+import { validarCaracteres, validaremail } from "./validaciones.js";
 // import Swal from 'sweetalert2'
 
 //declaro variables globales
@@ -26,7 +26,7 @@ function abrirModalContacto(){
 function crearContacto(e){
     e.preventDefault();
     //validar los datos del formulario
-  if(validarCaracteres(nombre,2,50)){
+  if(validarCaracteres(nombre,2,50) && validaremail(email) ){
     //crear el objeto
     const nuevoContacto = new Contacto(nombre.value,apellido.value, email.value, telefono.value, apodo.value, direccion.value, imagen.value)
     //guardar el contacto nuevo en la lista de contactos
@@ -39,22 +39,27 @@ function crearContacto(e){
     //dibuje una fila
     dibujarFila(nuevoContacto, listaContactos.length)
     //mostrar un cartel intuitivo para el usuario
-    // Swal.fire({
-    //   title: "Good job!",
-    //   text: "You clicked the button!",
-    //   icon: "success"
-    // });
+    Swal.fire({
+      title: "Contacto creado",
+      text: `El contacto: ${nuevoContacto.nombre}, fue creado correctamente`,
+      icon: "success"
+    });
   }else{
-    console.log('mostrar mensaje de error')
+    Swal.fire({
+      title: "Ocurrio un error",
+      text: `Debes corregir los datos del formulario`,
+      icon: "error"
+    });
   }
 
 
 }
 
-
-
 function limpiarFormulario(){
     formulario.reset();
+    //reseteando la clase de mi formulario
+    nombre.className = 'form-control'
+    email.className = 'form-control'
 }
 
 function guardarEnLocalStorage(){
@@ -128,3 +133,4 @@ window.verDetalle = (id)=>{
 btnAgregar.addEventListener('click', abrirModalContacto);
 formulario.addEventListener('submit', crearContacto)
 cargarDatosTabla();
+
