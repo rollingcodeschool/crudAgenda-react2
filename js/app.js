@@ -17,7 +17,7 @@ const telefono = document.querySelector("#telefono");
 const direccion = document.querySelector("#direccion");
 const imagen = document.querySelector("#urlImagen");
 const listaContactos = JSON.parse(localStorage.getItem("agendaKey")) || [];
-console.log(listaContactos);
+
 
 let idContactoEditar = null;
 let agregarNuevoContacto = true;
@@ -44,7 +44,7 @@ function crearContacto() {
     );
     //guardar el contacto nuevo en la lista de contactos
     listaContactos.push(nuevoContacto);
-    console.log(listaContactos);
+
     //guardar en localstorage
     guardarEnLocalStorage();
     //limpiar el formulario
@@ -86,13 +86,12 @@ function cargarDatosTabla() {
 }
 
 window.borrarContacto = (id) => {
-  console.log("desde la funcion borrar contacto");
-  console.log(id);
+  
   //en que posicion del array esta el contacto que quiero eliminar
   const posicionContacto = listaContactos.findIndex(
     (contacto) => contacto.id === id
   );
-  console.log(posicionContacto);
+
   //splice borra el contacto buscado del array
   listaContactos.splice(posicionContacto, 1);
   //actualizar el localstorage
@@ -104,7 +103,6 @@ window.borrarContacto = (id) => {
 };
 
 function dibujarFila(contacto, fila) {
-  console.log(contacto);
   //traigo la tabla
   const tbody = document.querySelector("tbody");
   tbody.innerHTML += `
@@ -132,7 +130,7 @@ function editarContacto() {
   let posicionContacto = listaContactos.findIndex(
     (itemContacto) => itemContacto.id === idContactoEditar
   );
-  console.log(posicionContacto);
+
   //todo: validar los datos
   //2- editar los valores de la pelicula dentroe del array
   listaContactos[posicionContacto].nombre = nombre.value;
@@ -147,7 +145,6 @@ function editarContacto() {
   guardarEnLocalStorage();
   //4-actualizar la fila
   let tablaContacto = document.querySelector("tbody");
-  console.log(tablaContacto.children[posicionContacto].children[1]);
   tablaContacto.children[posicionContacto].children[1].innerHTML = nombre.value;
   tablaContacto.children[posicionContacto].children[2].innerHTML =
     apellido.value;
@@ -167,7 +164,7 @@ function editarContacto() {
 
 window.verDetalle = (id) => {
   //BOM
-  // console.log(window.location)
+  
   window.location.href = `${window.location.origin}/pages/detalleContacto.html?id=${id}`;
 };
 
@@ -175,7 +172,7 @@ window.prepararDatos = (id) => {
   const contactoBuscado = listaContactos.find(
     (itemContacto) => itemContacto.id === id
   );
-  console.log(contactoBuscado)
+
   //mostrar la ventana modal
   idContactoEditar = id;
   nombre.value = contactoBuscado.nombre;
@@ -192,7 +189,7 @@ window.prepararDatos = (id) => {
 
 function prepararFormulario(e) {
   e.preventDefault();
-  console.log(agregarNuevoContacto);
+  
   if (agregarNuevoContacto) {
     crearContacto();
   } else {
